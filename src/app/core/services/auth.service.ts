@@ -15,12 +15,12 @@ export class AuthService {
 
   login(user: string, password: string): Observable<any> {
     return this.httpClient.post<any>(this.LOGIN_URL, { user, password }).pipe(
-      tap((response) => {
+      tap((response => {
         if (response.token) {
           console.log(response.token);
         }
       })
-    );
+    ))
   }
 
   private setToken(token: string): void {
@@ -32,12 +32,15 @@ export class AuthService {
   }
 
   isAuthenticated(): boolean {
+
     const token = this.getToken();
+
     if(!token) {
       return false;
     }
 
     const payload = JSON.parse(atob(token.split('.')[1]));
+    
     const exp = payload.exp * 1000;
     return Date.now() < exp;
   }
