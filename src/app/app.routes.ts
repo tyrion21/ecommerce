@@ -10,15 +10,15 @@ export const routes: Routes = [
         loadComponent: () => import('./business/dashboard/dashboard.component'),
       },
       {
-        path: 'users',
-        loadComponent: () => import('./business/users/users.component'),
-      },
-      {
         path: '',
         redirectTo: 'dashboard',
         pathMatch: 'full',
       }
     ],
+  },
+  {
+    path: 'login',
+    loadComponent: () => import('./business/auth/login/login.component'),
   },
   {
     path: '**',
